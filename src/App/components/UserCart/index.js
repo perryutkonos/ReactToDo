@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import UserEdit from "../UserEdit";
 import UserChangeBalance from "../UserChangeBalance";
 import UserTransactions from "../UserTransactions";
+import {DEFAULT_CURRENCY} from "../../constants"
 
 export default class UserCart extends Component {
 
@@ -26,8 +27,10 @@ export default class UserCart extends Component {
             register_date,
             balance,
             wallet_amount,
-            wallet_currency,
+            wallet_currency
         } = this.state;
+        
+        
         
         return (
             <div className="card bg-light mt-3">
@@ -38,7 +41,7 @@ export default class UserCart extends Component {
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">Email - {email}</li>
                     <li className="list-group-item">Дата регистрации - {register_date}</li>
-                    <li className="list-group-item">Баланс - {balance} {wallet_currency}</li>
+                    <li className="list-group-item">Баланс - {balance} {wallet_currency ? wallet_currency : DEFAULT_CURRENCY}</li>
                     <li className="list-group-item">Размер кошелька - {wallet_amount}</li>
                 </ul>
                 <div className="card-footer">

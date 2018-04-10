@@ -34,7 +34,7 @@ export default class UserList extends Component {
 
                 if (response.recordsTotal && response.data) {
                     
-                    this.offset += COUNT_GET_USERS;
+                    this.offset += response.data.length;
 
                     let oldUserList = this.state.userList;
                     let newUserList = oldUserList.concat(response.data);
@@ -42,7 +42,7 @@ export default class UserList extends Component {
                     this.setState({
                         userList: newUserList,
                         usersTotal: response.recordsTotal,
-                        usersGets: this.state.usersGets + COUNT_GET_USERS,
+                        usersGets: this.state.usersGets + response.data.length,
                         isLoading: false,
                         error:false
                     });
@@ -100,13 +100,13 @@ export default class UserList extends Component {
 
     render() {
 
-        const {userList, isLoading} = this.state;
+        const {userList, isLoading,usersTotal,usersGets} = this.state;
         const userCarts = ::this.renderUserList();
 
         return (
             <div className="container">
                 {userCarts}
-                {userList.length > 0 && !isLoading && <div className="row text-center mt-5 mb-5">
+                {userList.length > 0 && !isLoading && (usersTotal!==usersGets) &&  <div className="row text-center mt-5 mb-5">
                     <div className="col-sm-12">
                         <button type="button" className="btn btn-primary btn-lg" onClick={::this.getUserList}>
                             Загрузить еще
