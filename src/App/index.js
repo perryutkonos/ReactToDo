@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
+import {Link, Route, Switch, withRouter } from "react-router-dom";
 
 import "./style.css";
 import UserList from "./components/UserList"
+import Home from "./components/Home"
 import UserAdd from "./components/UserAdd"
 
 export default class App extends Component {
@@ -20,7 +22,7 @@ export default class App extends Component {
         this.setState({
             usersTotal: data.usersTotal,
             usersGets: data.usersGets,
-            newUser:false
+            newUser: false
         })
     }
 
@@ -40,6 +42,7 @@ export default class App extends Component {
                         <div className="row align-items-center">
                             <div className="col-sm-8">
                                 <h1 className="display-4">Список пользователей</h1>
+                                <Link className="btn btn-info mt-3" to='/list'>Список юзеров</Link>
                             </div>
                             <div className="col-sm-4">
                                 <p>
@@ -49,12 +52,13 @@ export default class App extends Component {
                                 <UserAdd saveUser={::this.handleClickSaveUser}/>
                             </div>
                         </div>
-
-
                     </div>
                 </header>
 
-                <UserList newUser={this.state.newUser} getUsers={::this.handleClickGetUsers}/>
+                <Switch>
+                    <Route exact path='/' component={Home}/>
+                    <Route path='/list' render={() => <UserList newUser={this.state.newUser} getUsers={::this.handleClickGetUsers}/>}/>
+                </Switch>
             </div>
         )
     }

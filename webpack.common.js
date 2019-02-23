@@ -11,13 +11,16 @@ module.exports = {
 
     output: {
         path: path.join(__dirname, '/build'),
-        filename: '[name].js'
+        filename: '[name].js',
+        publicPath: '/'
     },
 
     devServer: {
         contentBase: path.join(__dirname, "build"),
         compress: true,
-        port: 9000
+        port: 9000,
+        historyApiFallback: true,
+
     },
 
     watch: true,

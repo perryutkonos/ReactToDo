@@ -23,6 +23,7 @@
     "react-dom": "*",
     "react-redux": "*",
     "react-router": "*",
+    "react-router-dom": "^4.2.2",
     "reactjs-popup": "^1.0.5",
     "redux-logger": "*",
     "redux-thunk": "*",
